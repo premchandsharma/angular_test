@@ -1,0 +1,74 @@
+<div class="homepage-container">
+  <!-- @if (isLoading$ | async) {
+    <div class="loading">Loading campaigns...</div>
+  } @else {
+    @if (error$ | async; as error) {
+      <div class="error-message">{{ error }}</div>
+    } -->
+
+    <!-- <div class="testimonial-grid">
+      @for (testimonial of testimonials; track testimonial.name) {
+        <div class="testimonial-card">
+          <p class="testimonial-text">"{{testimonial.comment}}"</p>
+          <div class="testimonial-author">
+            <h4>{{testimonial.name}}</h4>
+            <p>{{testimonial.role}}</p>
+          </div>
+        </div>
+      }
+    </div><div class="testimonial-grid">
+      @for (testimonial of testimonials; track testimonial.name) {
+        <div class="testimonial-card">
+          <p class="testimonial-text">"{{testimonial.comment}}"</p>
+          <div class="testimonial-author">
+            <h4>{{testimonial.name}}</h4>
+            <p>{{testimonial.role}}</p>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="testimonial-grid">
+      @for (testimonial of testimonials; track testimonial.name) {
+        <div class="testimonial-card">
+          <p class="testimonial-text">"{{testimonial.comment}}"</p>
+          <div class="testimonial-author">
+            <h4>{{testimonial.name}}</h4>
+            <p>{{testimonial.role}}</p>
+          </div>
+        </div>
+      }
+    </div> -->
+    
+    @if (campaignData$ | async; as campaignData) {
+      <app-floater [campaignData]="campaignData"></app-floater>
+      <app-banner [campaignData]="campaignData"></app-banner>
+      <!-- <app-stories [campaignData]="campaignData"></app-stories> -->
+      <!-- <app-pip [campaignData]="campaignData"></app-pip> -->
+      <!-- <app-reels [campaignData]="campaignData"></app-reels> -->
+      <app-widgets [campaignData]="campaignData" [position]="'widget_full'"></app-widgets>
+      <app-widgets [campaignData]="campaignData" [position]="'widget_half'"></app-widgets>
+    }
+  <!-- } -->
+
+  <!-- <div class="feature-grid">
+    @for (feature of features; track feature.title) {
+      <div class="feature-card">
+        <div class="feature-icon">{{feature.icon}}</div>
+        <h3>{{feature.title}}</h3>
+        <p>{{feature.description}}</p>
+      </div>
+    }
+  </div>
+   -->
+  <!-- <div class="testimonial-grid">
+    @for (testimonial of testimonials; track testimonial.name) {
+      <div class="testimonial-card">
+        <p class="testimonial-text">"{{testimonial.comment}}"</p>
+        <div class="testimonial-author">
+          <h4>{{testimonial.name}}</h4>
+          <p>{{testimonial.role}}</p>
+        </div>
+      </div>
+    }
+  </div> -->
+</div>

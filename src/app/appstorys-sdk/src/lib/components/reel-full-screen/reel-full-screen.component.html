@@ -1,0 +1,36 @@
+<div class="full-screen-overlay">
+  <button class="close-button" (click)="close.emit()">
+    <span class="material-icons">keyboard_backspace</span>
+  </button>
+
+  <div class="navigation-controls">
+    <button class="nav-button up" (click)="navigateUp()" [class.disabled]="currentIndex === 0">
+      <span class="material-icons">keyboard_arrow_up</span>
+    </button>
+    <button class="nav-button down" (click)="navigateDown()"
+      [class.disabled]="currentIndex === reelsDetails.reels.length - 1">
+      <span class="material-icons">keyboard_arrow_down</span>
+    </button>
+  </div>
+
+  <div class="full-screen-container">
+    <div *ngFor="let reel of reelsDetails.reels; let i = index" class="reel-slide" [class.active]="i === currentIndex">
+      <video *ngIf="reel.video && i === currentIndex" [src]="reel.video" autoplay loop playsinline class="reel-video">
+      </video>
+      <div class="reel-desc">
+        <button class="reel-like-button" (click)="toggleLike(i)" [class.liked]="likedReels[i]">
+          <span class="material-icons" style="font-size: 30px;">{{ likedReels[i] ? 'favorite' : 'favorite_border' }}</span>
+        </button>
+        <div class="reel-dislike-button" (click)="share(reelsDetails.reels[currentIndex].link!)" >
+          <span class="material-icons" style="font-size: 28px;">share</span>
+        </div>
+        <div class="inner-reel-desc">
+          <div class="reel-description">
+            {{reel.description_text}}
+          </div>
+          <button (click)="sendClick(reel.link!)" class="reel-desc-button">{{reel.button_text}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

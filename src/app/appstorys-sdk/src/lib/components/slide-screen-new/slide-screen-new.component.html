@@ -1,0 +1,87 @@
+<div class="slide-screen">
+  <div class="header">
+    <div class="header-info">
+      <img *ngIf="data.details[currentGroupIndex]?.thumbnail"
+           [src]="data.details[currentGroupIndex].thumbnail"
+           alt="Thumbnail"
+           class="header-thumbnail">
+      <p class="header-name">{{data.details[currentGroupIndex]?.name}}</p>
+    </div>
+
+    <div class="header-controls">
+      <button class="control-button send" (click)="share(content[current]?.link)">
+        <span class="material-icons">send</span>
+      </button>
+      <button class="control-button play" (click)="togglePause()">
+        <span class="material-icons">
+          {{ isPaused ? 'play_arrow' : 'pause' }}
+        </span>
+      </button>
+      <button class="control-button" (click)="close()">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="slide-content">
+    <button class="navigation-button prev" (click)="handlePrevious()">
+      <span class="material-icons icons-new">arrow_back_ios</span>
+    </button>
+
+    <div class="slide-main">
+      <div class="slide-view">
+        <div class="progress-bar">
+          <div *ngFor="let item of content; let idx = index"
+               class="progress-segment">
+            <div class="progress-fill"
+                 [style.width]="current === idx 
+                   ? progress + '%' 
+                   : content[idx].finish 
+                     ? '100%' 
+                     : '0%'">
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!isContentReady" class="loader">
+          <span class="material-icons">refresh</span>
+        </div>
+
+        <img *ngIf="content[current]?.image"
+             [src]="content[current].image"
+             (load)="onImageLoaded()"
+             class="slide-media"
+             alt="Story Slide">
+
+        <video #videoElement
+               *ngIf="content[current]?.video"
+               [src]="content[current].video"
+               class="slide-media"
+               [autoplay]="!isPaused"
+               (loadedmetadata)="onVideoLoaded($event)"
+               (ended)="handleNext()"
+               [muted]="false"
+               preload="auto"
+               playsinline
+               >
+        </video>
+
+        <div class="product-card" *ngIf="content[current]?.title || content[current]?.link">
+          <div class="button-container" *ngIf="content[current]?.button_text">
+            <a [href]="content[current]?.link || '#'" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="buy-now-button"
+              (click)="sendClick()">
+              {{content[current]?.button_text}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="navigation-button next" (click)="handleNext()">
+      <span class="material-icons icons-new">arrow_forward_ios</span>
+    </button>
+  </div>
+</div>

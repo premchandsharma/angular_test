@@ -1,0 +1,17 @@
+<div class="container" *ngIf="data?.details?.image" [ngStyle]="getPosition()">
+  <div class="floater"
+  [style.width]="getWidth()"
+  [style.height]="getHeight()">
+    <a 
+    *ngIf="!isLoading && !loadError && cachedImageUrl"
+      [href]="data?.details?.link || '#'" 
+      target="_blank"
+      (click)="onFloaterClick()"
+    >
+      <img 
+        [src]="cachedImageUrl" 
+        [alt]="'Floater Campaign'"
+      />
+    </a>
+  </div>
+</div>

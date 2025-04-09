@@ -1,0 +1,27 @@
+<div *ngIf="reelsDetails?.reels?.length" class="reels-container">
+    <div class="reels-row">
+      <div 
+        *ngFor="let reel of reelsDetails!.reels; let i = index" 
+        class="reel-thumbnail"
+        [style.width.px]="thumbnailWidth"
+        [style.height.px]="thumbnailHeight"
+        [style.borderRadius.px]="cornerRadius"
+        (click)="openFullScreen(i)"
+      >
+        <img 
+          [src]="reel.thumbnail" 
+          alt="Reel Thumbnail" 
+          class="thumbnail-image"
+        >
+      </div>
+    </div>
+  
+    <app-reel-full-screen
+      *ngIf="isFullScreenVisible"
+      [reelsDetails]="reelsDetails!"
+      [startIndex]="selectedReelIndex"
+      [userId]="userId!"
+      [reelsCampaignId]="data!.id"
+      (close)="closeFullScreen()"
+    ></app-reel-full-screen>
+  </div>
