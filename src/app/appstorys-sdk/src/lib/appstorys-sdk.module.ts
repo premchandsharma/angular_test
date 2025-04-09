@@ -6,7 +6,13 @@ import { VerifyUserService } from './utils/verify-user.service';
 import { TrackScreenService } from './utils/track-screen.service';
 import { TrackUserActionService } from './utils/track-user-action.service';
 import { AppStorysService } from './utils/app-storys.service';
-import { PipComponent, StoriesComponent, WidgetsComponent, FloaterComponent, BannerComponent, ReelsComponent } from 'appstorys-sdk';
+import { FloaterComponent } from './components/floater/floater.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { WidgetsComponent } from './components/widgets/widgets.component';
+import { StoriesComponent } from './components/stories/stories.component';
+import { PipComponent } from './components/pip/pip.component';
+import { ReelsComponent } from './components/reels/reels.component';
+// import { PipComponent, StoriesComponent, WidgetsComponent, FloaterComponent, BannerComponent, ReelsComponent } from 'appstorys-sdk';
 
 
 @NgModule({
