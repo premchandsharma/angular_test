@@ -209,14 +209,14 @@ export class WidgetsComponent implements OnInit, OnChanges, AfterViewInit {
         this.observer?.observe(containerRef.nativeElement);
       });
     
-      const currentPairIndex = this.getCurrentSlideIndex();
-      if (this.data?.details.type === 'half') {
-        const pair = this.getHalfWidgetPair(currentPairIndex);
-        this.trackImpression(pair.first);
-        this.trackImpression(pair.second);
-      } else {
-        this.trackImpression(this.getCurrentSlideIndex());
-      }
+      // const currentPairIndex = this.getCurrentSlideIndex();
+      // if (this.data?.details.type === 'half') {
+      //   const pair = this.getHalfWidgetPair(currentPairIndex);
+      //   this.trackImpression(pair.first);
+      //   this.trackImpression(pair.second);
+      // } else {
+      //   this.trackImpression(this.getCurrentSlideIndex());
+      // }
     }, 500);
   }
 
@@ -234,13 +234,11 @@ export class WidgetsComponent implements OnInit, OnChanges, AfterViewInit {
     const widgets = this.campaignData.campaigns
       .filter(campaign => campaign.campaign_type === CAMPAIGN_TYPES.WIDGETS) as MediaCampaign[];
   
-    // Filter widgets based on position
     const matchingWidgets = widgets.filter(widget => 
       !widget.position || widget.position === this.position
     );
   
     if (matchingWidgets.length > 0) {
-      // Use the first widget that matches the position
       this.data = matchingWidgets[0];
       
       if (this.data.details.widget_images) {
@@ -360,6 +358,8 @@ export class WidgetsComponent implements OnInit, OnChanges, AfterViewInit {
     try {
       const slideIndex = index !== undefined ? index : this.getCurrentSlideIndex();
       const selectedImage = this.data.details.widget_images![slideIndex];
+
+      if (!selectedImage || !selectedImage.link) return;
 
       await this.userActionTrackService.trackUserAction(
         this.campaignData.user_id,
@@ -502,10 +502,6 @@ export class WidgetsComponent implements OnInit, OnChanges, AfterViewInit {
     return this.data.details.widget_images[index].lottie_data || '';
   }
   shouldShowWidget(): boolean {
-    // Show the widget if:
-    // 1. data.position is null/undefined, OR
-    // 2. position input matches data.position
-    console.log('Widget position:', this.data?.position, 'Input position:', this.position);
     return !this.data?.position || this.data.position === this.position;
   }
 
@@ -513,10 +509,8 @@ export class WidgetsComponent implements OnInit, OnChanges, AfterViewInit {
     if (!this.data?.details?.widget_images) return false;
     
     if (this.data.details.type === 'full') {
-      // For full type, enable sliding only if there's more than 1 image
       return this.data.details.widget_images.length > 1;
     } else if (this.data.details.type === 'half') {
-      // For half type, enable sliding only if there's more than 2 images
       return this.data.details.widget_images.length > 2;
     }
     

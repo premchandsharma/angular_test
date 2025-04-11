@@ -80,6 +80,8 @@ export class ReelFullScreenComponent implements OnInit {
 
   async sendClick(link: string) {
     try {
+
+      if (!link) return;
       await this.userActionTrackService.trackUserAction(
         this.userId,
         this.reelsCampaignId,
@@ -88,10 +90,7 @@ export class ReelFullScreenComponent implements OnInit {
         undefined,
         this.reelsDetails.reels[this.currentIndex].id,
       );
-
-      if (link) {
         window.open(link, '_blank');
-      }
     } catch (error) {
       console.error('Error tracking impression:', error);
     }

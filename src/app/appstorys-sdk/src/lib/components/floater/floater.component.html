@@ -4,7 +4,6 @@
   [style.height]="getHeight()">
     <a 
     *ngIf="!isLoading && !loadError && cachedImageUrl"
-      [href]="data?.details?.link || '#'" 
       target="_blank"
       (click)="onFloaterClick()"
     >

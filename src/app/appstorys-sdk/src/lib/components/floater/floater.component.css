@@ -15,6 +15,7 @@
     height: 60px;
     width: 60px;
     pointer-events: auto;
+    cursor: pointer;
   }
   
   .floater img {

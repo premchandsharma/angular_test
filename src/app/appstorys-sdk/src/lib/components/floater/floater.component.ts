@@ -130,6 +130,8 @@ export class FloaterComponent implements OnInit, OnChanges {
 
     if (!this.campaignData?.user_id || !this.data?.id) return;
 
+    if(!this.data.details?.link) return;
+
     try {
       await this.userActionTrackService.trackUserAction(
         this.campaignData.user_id,
@@ -139,6 +141,7 @@ export class FloaterComponent implements OnInit, OnChanges {
     } catch (error) {
       console.error('Error tracking click:', error);
     }
+    window.open(this.data.details.link, '_blank');
   }
 
   ngOnDestroy(): void {

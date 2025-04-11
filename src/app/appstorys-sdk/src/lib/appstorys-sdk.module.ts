@@ -12,7 +12,6 @@ import { WidgetsComponent } from './components/widgets/widgets.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { PipComponent } from './components/pip/pip.component';
 import { ReelsComponent } from './components/reels/reels.component';
-// import { PipComponent, StoriesComponent, WidgetsComponent, FloaterComponent, BannerComponent, ReelsComponent } from 'appstorys-sdk';
 
 
 @NgModule({

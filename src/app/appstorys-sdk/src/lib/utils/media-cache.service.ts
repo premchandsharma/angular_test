@@ -180,11 +180,6 @@ export class MediaCacheService {
         const request = store.put(data);
         
         request.onsuccess = () => {
-          console.log('[MediaCacheService] Successfully stored blob:', {
-            url: normalizedUrl,
-            size: blob.size,
-            type: blob.type
-          });
           resolve();
         };
         

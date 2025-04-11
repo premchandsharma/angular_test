@@ -3,7 +3,6 @@
     <div class="banner-close" *ngIf="enableCloseButton()" (click)="closeBanner()">✕</div>
     <a 
       *ngIf="!isLoading && !loadError && cachedImageUrl"
-      [href]="data?.details?.link || '#'" 
       target="_blank" 
       (click)="onBannerClick()"
     >
