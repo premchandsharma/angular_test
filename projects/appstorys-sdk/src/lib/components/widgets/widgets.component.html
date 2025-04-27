@@ -1,0 +1,227 @@
+<ng-container *ngIf="shouldShowWidget()">
+<div
+  *ngIf="data?.details?.type === 'full'"
+  class="carousel-container"
+  [style.height]="getHeight()"
+  [style.width]="getWidth()"
+  (touchstart)="onTouchStart($event)"
+  (touchmove)="onTouchMove($event)"
+  (touchend)="onTouchEnd()"
+>
+  <div
+    class="carousel"
+    [style.transform]="'translateX(' + translateX + '%)'"
+    [style.transition]="transition"
+  >
+    <div
+    class="carousel-item"
+    [style.height]="getHeight()"
+    *ngIf="items.length > 0"
+    >
+      <img 
+        #carouselImage
+        *ngIf="hasImage(items.length - 1)"
+        [src]="getCachedImageUrl(items.length - 1)" 
+        alt="Carousel item" 
+        (click)="trackClicks(items.length - 1)"
+      />
+      <div 
+        #lottieContainer
+        *ngIf="hasLottie(items.length - 1)"
+        class="lottie-container"
+        [style.height]="getHeight()"
+        (click)="trackClicks(items.length - 1)"
+      ></div>
+    </div>
+
+    <div
+    class="carousel-item"
+    [style.height]="getHeight()"
+    *ngFor="let item of items; let i = index"
+    >
+      <img 
+        #carouselImage
+        *ngIf="hasImage(i)"
+        [src]="getCachedImageUrl(i)"
+        alt="Carousel item" 
+        (click)="trackClicks(i)"
+      />
+      <div 
+        #lottieContainer
+        *ngIf="hasLottie(i)"
+        class="lottie-container"
+        [style.height]="getHeight()"
+        (click)="trackClicks(i)"
+      ></div>
+    </div>
+
+    <div
+    class="carousel-item"
+    [style.height]="getHeight()"
+    *ngIf="items.length > 0"
+    >
+      <img 
+        #carouselImage
+        *ngIf="hasImage(0)"
+        [src]="getCachedImageUrl(0)"
+        alt="Carousel item" 
+        (click)="trackClicks(0)"
+      />
+      <div 
+        #lottieContainer
+        *ngIf="hasLottie(0)"
+        class="lottie-container"
+        [style.height]="getHeight()"
+        (click)="trackClicks(0)"
+      ></div>
+    </div>
+  </div>
+
+  <button class="nav-btn prev" (click)="prevSlide()" *ngIf="!isMobileView && shouldEnableSliding()">&#10094;</button>
+  <button class="nav-btn next" (click)="nextSlide()" *ngIf="!isMobileView && shouldEnableSliding()">&#10095;</button>
+
+  <div class="dots-container" *ngIf="shouldEnableSliding()">
+    <span
+      class="dot"
+      *ngFor="let item of items; let i = index"
+      [class.active]="getCurrentSlideIndex() === i"
+    ></span>
+  </div>
+</div>
+
+<div 
+  *ngIf="data?.details?.type === 'half'" 
+  class="carousel-container half-carousel-container"
+  [style.width]="getWidth()"
+  [style.height]="getHeight()"
+  (touchstart)="onTouchStart($event)"
+  (touchmove)="onTouchMove($event)"
+  (touchend)="onTouchEnd()"
+>
+  <div
+    class="carousel"
+    [style.transform]="'translateX(' + translateX + '%)'"
+    [style.transition]="transition"
+  >
+    <div class="half-widget-container" *ngIf="items.length >= 2">
+      <div class="half-widget" [style.height]="getHeight()">
+        <img #carouselImage
+          *ngIf="hasImage(items.length - 2 >= 0 ? items.length - 2 : items.length - 1)"
+          [src]="getCachedImageUrl(items.length - 2 >= 0 ? items.length - 2 : items.length - 1)" 
+          alt="Carousel item" 
+          (click)="trackClicks(items.length - 2 >= 0 ? items.length - 2 : items.length - 1)"
+        />
+        
+        <div 
+          #lottieContainer
+          *ngIf="hasLottie(items.length - 2 >= 0 ? items.length - 2 : items.length - 1)"
+          class="lottie-container"
+          [style.height]="getHeight()"
+          (click)="trackClicks(items.length - 2 >= 0 ? items.length - 2 : items.length - 1)"
+        ></div>
+      </div>
+      <div class="half-widget" [style.height]="getHeight()">
+        <img #carouselImage
+          *ngIf="hasImage(items.length - 1)"
+          [src]="getCachedImageUrl(items.length - 1)" 
+          alt="Carousel item" 
+          (click)="trackClicks(items.length - 1)"
+        />
+        
+        <div 
+          #lottieContainer
+          *ngIf="hasLottie(items.length - 1)"
+          class="lottie-container"
+          [style.height]="getHeight()"
+          (click)="trackClicks(items.length - 1)"
+        ></div>
+      </div>
+    </div>
+
+    <ng-container *ngFor="let index of getTotalDots()">
+      <div class="half-widget-container">
+        <ng-container *ngIf="getHalfWidgetPair(index) as pair">
+          <div class="half-widget" [style.height]="getHeight()">
+            <img #carouselImage
+              *ngIf="hasImage(pair.first)"
+              [src]="getCachedImageUrl(pair.first)"
+              alt="Carousel item" 
+              (click)="trackClicks(pair.first)"
+            />
+            
+            <div 
+              #lottieContainer
+              *ngIf="hasLottie(pair.first)"
+              class="lottie-container"
+              [style.height]="getHeight()"
+              (click)="trackClicks(pair.first)"
+            ></div>
+          </div>
+          <div class="half-widget" [style.height]="getHeight()" *ngIf="pair.second < items.length">
+            <img #carouselImage
+              *ngIf="hasImage(pair.second)"
+              [src]="getCachedImageUrl(pair.second)"
+              alt="Carousel item" 
+              (click)="trackClicks(pair.second)"
+            />
+            
+            <div 
+              #lottieContainer
+              *ngIf="hasLottie(pair.second)"
+              class="lottie-container"
+              [style.height]="getHeight()"
+              (click)="trackClicks(pair.second)"
+            ></div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <div class="half-widget-container" *ngIf="items.length >= 2">
+      <div class="half-widget" [style.height]="getHeight()">
+        <img #carouselImage
+          *ngIf="hasImage(0)"
+          [src]="getCachedImageUrl(0)" 
+          alt="Carousel item" 
+          (click)="trackClicks(0)"
+        />
+        
+        <div 
+          #lottieContainer
+          *ngIf="hasLottie(0)"
+          class="lottie-container"
+          [style.height]="getHeight()"
+          (click)="trackClicks(0)"
+        ></div>
+      </div>
+      <div class="half-widget" [style.height]="getHeight()" *ngIf="items.length > 1">
+        <img #carouselImage
+          *ngIf="hasImage(1)"
+          [src]="getCachedImageUrl(1)" 
+          alt="Carousel item" 
+          (click)="trackClicks(1)"
+        />
+        
+        <div 
+          #lottieContainer
+          *ngIf="hasLottie(1)"
+          class="lottie-container"
+          [style.height]="getHeight()"
+          (click)="trackClicks(1)"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="nav-btn prev" (click)="prevSlide()" *ngIf="!isMobileView && shouldEnableSliding()">&#10094;</button>
+  <button class="nav-btn next" (click)="nextSlide()" *ngIf="!isMobileView && shouldEnableSliding()">&#10095;</button>
+
+  <div class="dots-container" *ngIf="shouldEnableSliding()">
+    <span
+      class="dot"
+      *ngFor="let dot of getTotalDots()"
+      [class.active]="getCurrentSlideIndex() === dot"
+    ></span>
+  </div>
+</div>
+</ng-container>

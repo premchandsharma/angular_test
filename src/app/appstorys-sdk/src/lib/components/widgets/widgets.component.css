@@ -1,0 +1,125 @@
+.carousel-container {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  z-index: 1;
+}
+
+.lottie-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.carousel-item img {
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 18px;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.nav-btn.prev {
+  left: 10px;
+}
+
+.nav-btn.next {
+  right: 10px;
+}
+
+.nav-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 768px) {
+  .nav-btn {
+    display: none;
+  }
+}
+
+.dots-container {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  z-index: 20;
+}
+
+.dot {
+  width: 14px;
+  height: 6px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.half-carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  z-index: 1;
+}
+
+.half-widget-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.half-widget {
+  width: 49%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.half-widget img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+  border-radius: 20px;
+}

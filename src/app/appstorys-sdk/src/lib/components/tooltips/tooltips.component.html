@@ -1,0 +1,18 @@
+<div class="tooltip-container">
+  <!-- Wrapped content always visible -->
+  <div class="tooltip-content" [ngClass]="{'highlighted': showTooltip}">
+    <ng-content></ng-content>
+    
+      <!-- Tooltip Arrow - always centered -->
+      <div class="tooltip-arrow" [ngClass]="'arrow-' + adjustedPosition"></div>
+  </div>
+
+  <!-- Tooltip shown conditionally -->
+  <ng-container *ngIf="showTooltip">
+    <div class="tooltip-overlay"></div>
+    <div class="tooltip-box" [ngClass]="'tooltip-' + adjustedPosition" (click)="handleTooltipClick()">
+      <img *ngIf="tooltipImage" [src]="tooltipImage" alt="Tooltip image" />
+      
+    </div>
+  </ng-container>
+</div>

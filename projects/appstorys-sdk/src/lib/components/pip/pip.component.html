@@ -1,0 +1,59 @@
+<div *ngIf="pipData?.details && pipVisible" class="pip-container" [style.top.px]="position.y"
+  [style.left.px]="position.x">
+  <div *ngIf="!fullScreenPipVisible" #pipRef class="pip-window" [style.width]="getWidth()" [style.height]="getHeight()"
+    (mousedown)="handleStart($event)" (touchstart)="handleStart($event)">
+    <div (click)="handleMuteClick($event)" (touchstart)="handleMuteClick($event)" class="control-button pip-control">
+      <span class="material-icons">
+        {{ isMuted ? 'volume_off' : 'volume_up' }}
+      </span>
+    </div>
+
+    <div (click)="handleCloseClick($event)" (touchstart)="handleCloseClick($event)" class="control-button pip-control close-position">
+      <span class="material-icons">close</span>
+    </div>
+
+    <div (click)="handleExpandClick($event)" (touchstart)="handleExpandClick($event)" class="control-button pip-control expand-position">
+      <span class="material-icons">open_in_full</span>
+    </div>
+
+    <video #smallVideoRef [src]="pipData?.details?.small_video" autoplay [muted]="isMuted" loop playsinline
+      class="pip-video"></video>
+  </div>
+
+  <div *ngIf="fullScreenPipVisible" class="fullscreen-container" (click)="$event.stopPropagation()">
+    <div class="fullscreen-content">
+      <div class="video-container">
+        <div class="controls-container">
+          <div class="controls-group">
+            <button (click)="togglePause()" class="control-button">
+              <span class="material-icons">
+                {{ isPaused ? 'play_arrow' : 'pause' }}
+              </span>
+            </button>
+            <button (click)="toggleMute()" class="control-button">
+              <span class="material-icons">
+                {{ isFullscreenMuted ? 'volume_off' : 'volume_up' }}
+              </span>
+            </button>
+            <button (click)="minimizeFullScreen()" class="control-button">
+              <span class="material-icons">close_fullscreen</span>
+            </button>
+          </div>
+        </div>
+        <div class="main-video-container">
+          <video #videoRef [src]="pipData?.details?.large_video" class="main-video" autoplay loop playsinline></video>
+          <div class="cta-container">
+            <a [href]="pipData?.details?.link" target="_blank" rel="noopener noreferrer" class="cta-button"
+              (click)="trackClick()">
+              {{ pipData?.details?.button_text }}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <button (click)="closeFullScreen($event)" class="close-fullscreen-button">
+        <span class="material-icons close-icon">close</span>
+      </button>
+    </div>
+  </div>
+</div>

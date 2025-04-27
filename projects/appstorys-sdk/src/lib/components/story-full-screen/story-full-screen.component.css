@@ -1,0 +1,432 @@
+.slide-screen {
+  background-color: rgba(51, 51, 51, 0.95);
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.slide-content {
+  display: flex;
+  position: relative;
+  height: 100%;
+  max-height: 650px;
+  width: 100%;
+  max-width: 380px;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  width: 380px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 100;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-thumbnail {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.header-name {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.header-controls {
+  display: flex;
+  gap: 15px;
+}
+
+.control-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-button .material-icons {
+  font-size: 18px;
+}
+
+.navigation-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 200;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.navigation-button.prev {
+  left: -40px;
+}
+
+.navigation-button.next {
+  right: -40px;
+}
+
+.navigation-button .icons-new {
+  font-size: 20px;
+}
+
+.slide-main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+}
+
+.slide-view {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 10px;
+  z-index: 90;
+}
+
+.progress-segment {
+  height: 3px;
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 80;
+}
+
+.loader .material-icons {
+  color: white;
+  font-size: 30px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.slide-media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background-color: #000;
+}
+
+.product-card {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 450px;
+  background-color: transparent;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 10px 8px;
+}
+
+.buy-now-button {
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+@media (max-width: 768px) {
+  .header {
+    width: 90%;
+    max-width: 420px;
+  }
+
+  .slide-content {
+    width: 90%;
+  }
+
+  .navigation-button.prev {
+    left: 10px;
+  }
+
+  .navigation-button.next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    width: 95%;
+  }
+
+  .slide-content {
+    width: 95%;
+    max-width: none;
+  }
+
+  .navigation-button {
+    width: 24px;
+    height: 24px;
+  }
+
+  .navigation-button .icons-new {
+    font-size: 16px;
+  }
+
+  .product-card {
+    padding: 5px;
+  }
+
+  .product-thumbnail {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .product-title {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .buy-now-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-height: 650px) {
+  .slide-content {
+    max-height: 90vh;
+  }
+
+  .product-card {
+    bottom: 15px;
+  }
+
+  .product-thumbnail {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    width: 95%;
+    max-width: none;
+  }
+
+  .slide-screen{
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide-content {
+    width: 100%;
+    max-width: none;
+  }
+
+  .navigation-button.prev {
+    left: 10px;
+  }
+
+  .navigation-button.next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-content {
+    max-height: 80vh;
+  }
+  
+  .header {
+    margin-bottom: 5px;
+  }
+  
+  .product-card {
+    width: 95%;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-controls {
+    gap: 8px;
+  }
+  
+  .control-button {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .product-info-row {
+    padding: 5px;
+  }
+  
+  .product-thumbnail {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .slide-content {
+    max-height: 85vh;
+    max-width: 300px;
+  }
+  
+  .header {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide-screen {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .navigation-button {
+    display: none;
+  }
+  
+  .slide-main {
+    touch-action: none; 
+    width: 100%; 
+    height: 100%;
+    border-radius: 0;
+  }
+  
+  .slide-content {
+    height: calc(100% - 60px);
+  }
+  
+ 
+  .progress-bar {
+    top: 5px;
+  }
+
+  .control-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .buy-now-button {
+    min-height: 44px;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.slide-main:active {
+  opacity: 0.98;
+}
+
+.swipe-instruction {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+  animation: fadeOut 2s ease-in-out 3s forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 0.8; }
+  to { opacity: 0; }
+}

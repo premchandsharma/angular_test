@@ -1,0 +1,102 @@
+<div 
+  class="survey-overlay" 
+  [class.show]="isVisible"
+>
+  <div
+  class="survey-container"
+  [ngStyle]="{ 'background-color': surveyDetails?.styling?.backgroundColor || '#ffffff' }"
+  >
+    <div class="survey-header">
+      <p></p>
+      <h2 
+        class="main-heading" 
+        style="font-size: 25px;" 
+        [ngStyle]="{ 'color': surveyDetails?.styling?.surveyTextColor || '#000000' }"
+      >
+        {{ surveyDetails?.name || 'Survey' }}
+      </h2>
+      <button
+      class="close-button"
+      (click)="closeSurvey()"
+      [ngStyle]="{
+        'background-color': surveyDetails?.styling?.ctaBackgroundColor || '#e09931',
+        'color': surveyDetails?.styling?.ctaTextIconColor || '#ffffff'
+      }"
+      >×</button>
+    </div>
+
+    <div class="survey-content">
+      <div 
+        class="survey-question"
+        [ngStyle]="{ 'color': surveyDetails?.styling?.surveyQuestionColor || '#000000' }"
+      >
+        <p>{{ surveyDetails?.surveyQuestion }}</p>
+      </div>
+
+      <div class="survey-options">
+        <div 
+          class="option"
+          *ngFor="let option of optionList; let idx = index"
+          [class.selected]="selectedOptions.includes(option.value)"
+          (click)="selectOption(option.value)"
+          [ngStyle]="getOptionStyle(option.value)"
+        >
+          <div class="option-circle">
+            {{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[idx] }}
+          </div>
+          <div 
+            class="option-text"
+            [ngStyle]="{ 'color': getTextColor(option.value) }"
+          >
+            {{ option.value }}
+          </div>
+        </div>
+
+        <!-- Others option -->
+        <div
+          *ngIf="surveyDetails?.hasOthers"
+          class="option"
+          [class.selected]="selectedOptions.includes('others')"
+          (click)="selectOption('others')"
+          [ngStyle]="getOptionStyle('others')"
+        >
+          <div class="option-circle">
+            {{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[optionList.length] }}
+          </div>
+          <div 
+            class="option-text"
+            [ngStyle]="{ 'color': getTextColor('others') }"
+          >
+            Others
+          </div>
+        </div>
+        
+        <!-- Show textbox if "others" selected -->
+          <div *ngIf="selectedOptions.includes('others')"
+          class="others-textbox">
+            <input 
+              type="text"
+              placeholder="Please specify"
+              style="width:100%; padding: 8px; margin-top: 8px; box-sizing: border-box; border-radius: 4px; border: none;"
+              [(ngModel)]="othersText"
+              [ngStyle]="{
+                'color': surveyDetails?.styling?.othersTextColor || '#000000',
+                'background-color': surveyDetails?.styling?.othersBackgroundColor || '#ffffff',
+              }"
+            />
+          </div>
+      </div>
+
+      <button 
+        class="submit-button" 
+        (click)="submitSurvey()"
+        [ngStyle]="{
+          'background-color': surveyDetails?.styling?.ctaBackgroundColor || '#e09931',
+          'color': surveyDetails?.styling?.ctaTextIconColor || '#ffffff'
+        }"
+      >
+        SUBMIT
+      </button>
+    </div>
+  </div>
+</div>

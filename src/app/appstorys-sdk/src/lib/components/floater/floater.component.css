@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: fixed;
+    bottom: 20px;
+    pointer-events: none;
+    z-index: 20;
+  }
+  
+  .floater {
+    height: 60px;
+    width: 60px;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  
+  .floater img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50px;
+  }

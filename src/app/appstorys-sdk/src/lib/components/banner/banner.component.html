@@ -1,0 +1,31 @@
+<div class="container" *ngIf="bannerVisible">
+  <div class="banner" [style.margin-bottom]="getBottomMargin()">
+    <div class="banner-close" *ngIf="enableCloseButton()" (click)="closeBanner()">✕</div>
+    <a 
+      *ngIf="!isLoading && !loadError && cachedImageUrl"
+      target="_blank" 
+      (click)="onBannerClick()"
+    >
+      <img 
+        *ngIf="data?.details?.image"
+        [src]="cachedImageUrl"
+        [alt]="'Banner Campaign'"
+        [style.border-top-left-radius]="gettopLeftRadius()"
+        [style.border-top-right-radius]="gettopRightRadius()"
+        [style.border-bottom-left-radius]="getbottomLeftRadius()"
+        [style.border-bottom-right-radius]="getbottomRightRadius()"
+        [style.height]="getHeight()"
+      />
+
+      <div 
+        #lottieContainer 
+        *ngIf="!data?.details?.image && data?.details?.lottie_data"
+        [style.border-top-left-radius]="gettopLeftRadius()"
+        [style.border-top-right-radius]="gettopRightRadius()"
+        [style.border-bottom-left-radius]="getbottomLeftRadius()"
+        [style.border-bottom-right-radius]="getbottomRightRadius()"
+        [style.height]="getHeight()"
+      ></div>
+    </a>
+  </div>
+</div>

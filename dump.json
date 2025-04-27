@@ -1,0 +1,32 @@
+{
+    "id": "43835549-58b6-49fc-9683-89a2090a707a",
+    "campaign_type": "WID",
+    "details": {
+        "id": "b42ece42-fee2-4046-b28b-e3595389cd4c",
+        "type": "full",
+        "width": null,
+        "height": 200,
+        "widget_images": [
+            {
+                "id": "209bc96f-95a8-4e35-9c69-5bfa8a1d7cb7",
+                "image": "https://appstorysmediabucket.s3.amazonaws.com/widget_image/Screen_2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2UC3EJVDHJBIHV3T%2F20250127%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250127T053950Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=d9059996af2628c934ed807f871c83d801dea41df3bf9542592c4d6aeac510a4",
+                "link": "https://appstorys.com/",
+                "order": 0
+            },
+            {
+                "id": "f62aa73b-2ce3-406e-b594-7b40f0993b77",
+                "image": "https://appstorysmediabucket.s3.amazonaws.com/widget_image/Screen_5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2UC3EJVDHJBIHV3T%2F20250127%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250127T053950Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6b239da2aaa1c199b85627865944eacddf3be8ec3229a92a51111bfd44d25e99",
+                "link": "https://appstorys.com/",
+                "order": 1
+            },
+            {
+                "id": "9653e40e-7094-43ae-bd3b-059a1f686014",
+                "image": "https://appstorysmediabucket.s3.amazonaws.com/widget_image/Screen_3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2UC3EJVDHJBIHV3T%2F20250127%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250127T053950Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=aec126aedfab639e9362b2d96d8cd9bee4d63069e0c850e92f3b7371dfe2b946",
+                "link": "https://appstorys.com/",
+                "order": 2
+            }
+        ],
+        "campaign": "43835549-58b6-49fc-9683-89a2090a707a",
+        "screen": 8
+    }
+}

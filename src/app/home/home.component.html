@@ -1,0 +1,22 @@
+<div class="homepage-container">
+  @if (campaignData$ | async; as campaignData) {
+  <app-floater [campaignData]="campaignData"></app-floater>
+  <app-banner [campaignData]="campaignData"></app-banner>
+  <app-stories [campaignData]="campaignData"></app-stories>
+
+  <!-- <app-tooltips [campaignData]="campaignData" [target]="'Navbar'">
+  <button>Click</button>
+  </app-tooltips> -->
+  <app-survey [campaignData]="campaignData"></app-survey>
+  <!-- <app-pip [campaignData]="campaignData"></app-pip> -->
+  <!-- <app-reels [campaignData]="campaignData"></app-reels> -->
+  <app-widgets [campaignData]="campaignData" [position]="'widget_full'"></app-widgets>
+  <div style="margin: 24px 0;">
+    <img src="assets/hamaramall.png" alt="Local Image" style="max-width: 100%; height: auto;">
+  </div>
+  <app-widgets [campaignData]="campaignData" [position]="'widget_half'"></app-widgets>
+  <div style="margin: 24px 0 86px 0;">
+    <img src="assets/hamaramalltwo.png" alt="Local Image" style="max-width: 100%; height: auto;">
+  </div>
+  }
+</div>

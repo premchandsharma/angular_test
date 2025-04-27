@@ -1,0 +1,28 @@
+<div class="stories-container">
+    <div class="stories-scroll">
+      <div *ngFor="let storyGroup of data?.details; let i = index"
+           class="story-item">
+        <div class="story-content">
+          <div class="story-thumbnail"
+               [style.border-color]="storyGroup.ringColor"
+               (click)="handleOpenSlideScreen(i)">
+            <img [src]="storyGroup.thumbnail"
+                 alt="thumbnail">
+          </div>
+          <p class="story-name"
+             [style.color]="storyGroup.nameColor">
+            {{storyGroup.name}}
+          </p>
+        </div>
+      </div>
+    </div>
+  
+    <app-slide-screen-new *ngIf="slideScreenVisible && slidesData"
+                         [data]="slidesData"
+                         [index]="currentGroupIndex!"
+                         [storyCampaignId]="data!.id"
+                         [userId]="userId!"
+                         (slideScreenVisibleChange)="slideScreenVisible = $event"
+                         class="slide-screen-container">
+    </app-slide-screen-new>
+  </div>
